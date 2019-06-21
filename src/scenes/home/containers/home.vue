@@ -12,6 +12,12 @@
               <input type="file" @change="loadTextFromFile">
             </label>
             <b-button class="m-0" @click="getDataFromAPI" variant="info">Get the User Data</b-button>
+            <JsonCSV
+              :data="scrapedData"
+              class="ml-3 btn btn-info"
+            >
+              Download Data
+            </JsonCSV>
           </div>
         </b-col>
       </b-row>
@@ -31,10 +37,14 @@
 
 <script>
 import Papa from 'papaparse'
+import JsonCSV from 'vue-json-csv'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Home',
+  components: {
+    JsonCSV
+  },
   data () {
     return {
       phone_fields: ['phone', 'country_code'],
@@ -96,22 +106,12 @@ export default {
       if (this.phone_results.length === 0) {
         this.errorText = 'No Phone data. please upload phone data.'
       } else {
-        let promiseArray = []
         this.phone_results.map((item, index) => {
-          // promiseArray.push(new Promise(resolve => {
-          //   setTimeout(() => {
-          //     this.getDataFromPhoneAPI(item)
-          //     resolve(true)
-          //   }, 3000*index)
-          // }))
-          // Promise.all(promiseArray).then(results => {
-          //   console.log(results)
-          // })
-            setTimeout(() => {
-              this.getDataFromPhoneAPI(item).catch(err => {
-                console.log(err)
-              })
-            }, 3000*index)
+          setTimeout(() => {
+            this.getDataFromPhoneAPI(item).catch(err => {
+              console.log(err)
+            })
+          }, 1000 * index)
         })
       }
     }
