@@ -1,7 +1,7 @@
 <template>
   <div class="nav-bar-container">
     <b-container>
-      <h3>User Detail Scraper</h3>
+      <h3>Phone Detail Scraper</h3>
     </b-container>
   </div>
 </template>
