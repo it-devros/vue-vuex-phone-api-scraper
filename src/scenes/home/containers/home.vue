@@ -23,11 +23,25 @@
       </b-row>
       <b-row>
         <b-col>
-          <div class="m-3" v-if="phone_results.length > 0 && is_scraped == false">
+          <div class="bb-2">
+            <h4>Input Data</h4>
+          </div>
+          <div class="m-3" v-if="phone_results.length > 0">
             <b-table :items="phone_results" :fields="phone_fields"></b-table>
+          </div>
+          <div class="m-3" v-if="phone_results.length == 0">
+            <span class="text-danger">No data</span>
+          </div>
+        </b-col>
+        <b-col>
+          <div class="bb-2">
+            <h4>Result Data</h4>
           </div>
           <div class="m-3" v-if="scrapedData.length > 0 && is_scraped == true">
             <b-table :items="scrapedData" :fields="scraped_fields"></b-table>
+          </div>
+          <div class="m-3" v-if="scrapedData.length == 0">
+            <span class="text-danger">No data</span>
           </div>
         </b-col>
       </b-row>
@@ -131,5 +145,8 @@ export default {
     left: 0;
     z-index: -1;
     opacity: 0;
+  }
+  .bb-2 {
+    border-bottom: 2px solid #000;
   }
 </style>
