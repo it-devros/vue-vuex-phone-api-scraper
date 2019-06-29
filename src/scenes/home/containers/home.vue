@@ -125,7 +125,7 @@ export default {
             this.getDataFromPhoneAPI(item).catch(err => {
               console.log(err)
             })
-          }, 300 * index)
+          }, 500 * index)
         })
       }
     }
